@@ -35,3 +35,39 @@ accepts a style and a list of references as arguments, and
 `processCites'`, which lives in the IO monad and derives the style
 and references from the document's metadata.
 
+My changes **TMG**
+------------------
+
+In `src/Text/CSL/Input/Bibtex.hs` added 
+
+line 1488
+````
+subDate' <- getDates "submitted" <|> getOldDates mempty <|> return []
+````
+
+line 1569.
+
+````
+, submitted           = subDate'
+````
+
+
+Compiling
+---------
+Follow instructions for compiling [Pandoc from source](https://pandoc.org/installing.html#compiling-from-source). The stack method is reproduced here:
+
+> Quick stack method
+> 
+> The easiest way to build pandoc from source is to use stack:
+> 
+> 1. Install stack. Note that Pandoc requires stack >= 1.7.0.
+> 
+> 2. Change to the pandoc source directory and issue the following commands:
+> 
+> ````
+> stack setup
+> stack install
+> ````
+> 
+> `stack setup` will automatically download the ghc compiler if you don’t have it. `stack install` will install the `pandoc-citeproc` executable into `~/.local/bin`, which you should add to your `PATH`. This process will take a while, and will consume a considerable amount of disk space.
+

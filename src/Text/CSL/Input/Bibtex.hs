@@ -1485,6 +1485,7 @@ itemToReference lang locale bibtex caseTransform = bib $ do
               <|> return []
   origDate' <- getDates "origdate" <|> getOldDates "orig"
               <|> return []
+  subDate' <- getDates "submitted" <|> getOldDates mempty <|> return []
   accessed' <- getDates "urldate" <|> getOldDates "url" <|> return []
 
   -- url, doi, isbn, etc.:
@@ -1565,6 +1566,7 @@ itemToReference lang locale bibtex caseTransform = bib $ do
          , accessed            = accessed'
          -- , container           = undefined -- :: [RefDate]
          , originalDate        = origDate'
+         , submitted           = subDate'
          -- , submitted           = undefined -- :: [RefDate]
          , title               = concatWith '.' [
                                     concatWith ':' [title', subtitle']
